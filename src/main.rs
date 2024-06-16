@@ -12,9 +12,6 @@ use chrono::{DateTime, Utc};
 
 
 fn main() {
-    // Set logger
-    env_logger::init();
-
     // Load sensors
     let mut moisture_sensor = moisture_sensor::MoistureSensor::build(
         I2cdev::new("/dev/i2c-1").expect("Failed to connect to moisture sensor"),
