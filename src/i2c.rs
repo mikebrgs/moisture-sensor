@@ -5,7 +5,7 @@ pub mod constants;
 
 // Public imports
 use embedded_hal::i2c::I2c;
-use byteorder::{BigEndian, ByteOrder};
+use byteorder::{LittleEndian, ByteOrder};
 
 
 #[derive(Debug)]
@@ -96,7 +96,7 @@ impl<I2C: I2c> MoistureSensorI2c<I2C>{
         );
     
         match result {
-            Ok(()) => Ok(BigEndian::read_u16(&buffer)),
+            Ok(()) => Ok(LittleEndian::read_u16(&buffer)),
             Err(_) => Err(MoistureSensorI2cError::IOError(String::from("Error reading moisture level.")))
         }
     }
